@@ -1,0 +1,20 @@
+extends layout
+
+block content
+	table#myTable
+		h1 Product Line
+		thead
+			tr
+				th.productLine ProductLine 
+				th.tDescription tDescription
+				th.hDescription hDescription
+				th.productImage image
+			tbody#dataTableRow
+				-results.map((row)=>{
+					tr
+						td #{row.productLine}
+						td #{row.textDescription}
+						td #{row.htmlDescription}
+						td #{row.image}
+				-})
+	include form
