@@ -50,4 +50,17 @@ router.post("/productLine", (req, res, next)=>{
 	})
 })
 
+router.get("/deletePost/:id", function(req, res, next){
+	var postToDelete = req.params.id;
+	var deleteQuery = `delete from productLines where productLine = ?;`;
+	connection.query(deleteQuery,[postToDelete], (error, results, field)=>{
+		if(error){
+			console.log(error);
+		}else{
+			console.log("you have delete me succesfully");
+			res.redirect("/");
+		}
+	});
+});
+
 module.exports = router;
