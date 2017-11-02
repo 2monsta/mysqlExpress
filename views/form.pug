@@ -1,6 +1,6 @@
 form#myProductLineForm(action="/productLine", method="post")
-	input(type="text" placeholder="ProductLine" required name="productLine")
-	input(type="text" placeholder="textDescription" required name="textDescription")
-	input(type="text" placeholder="htmlDescription" name="htmlDescription")
-	input(type="text" placeholder="image" name="image")
-	button(type="submit") Submit
+	input.form-control(type="text" placeholder="ProductLine" required name="productLine")
+	input.form-control(type="text" placeholder="textDescription" required name="textDescription")
+	input.form-control(type="text" placeholder="htmlDescription" name="htmlDescription")
+	input.form-control(type="text" placeholder="image" name="image")
+	button(type="submit").btn.btn-success.col-sm-12 Submit

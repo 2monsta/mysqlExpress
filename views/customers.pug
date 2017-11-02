@@ -1,0 +1,25 @@
+extends layout
+
+block content
+	table.myTable.table-striped
+		h1 Customers
+		thead
+			tr
+				th.customerName Name 
+				th.city City
+				th.phone Phone
+				th.country Country
+				th.salesRepEmployeeNumber Sales Rep Employee Number
+				th Delete
+		tbody#dataTableRow
+			-results.map((row)=>{
+				tr
+					td #{row.customerName}
+					td #{row.city}
+					td #{row.phone}
+					td #{row.country}
+					td #{row.salesRepEmployeeNumber}
+					td
+						a(href=`/deletePost/${row.customerNumber}`) 
+							button(type="submit").btn.btn-danger#deletePost Delete
+			-})

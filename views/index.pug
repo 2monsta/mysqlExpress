@@ -1,25 +1,7 @@
 extends layout
 
 block content
-	table#myTable.table-striped
-		h1 Product Line
-		thead
-			tr
-				th.productLine ProductLine 
-				th.tDescription tDescription
-				th.hDescription hDescription
-				th.productImage image
-				th Delete
-			tbody#dataTableRow
-				-results.map((row)=>{
-					tr
-						td #{row.productLine};
-						td #{row.textDescription}
-						td #{row.htmlDescription}
-						td #{row.image}
-						td
-							//- form(action="/deletePost" method="post")
-							a(href=`/deletePost/${row.productLine}`) 
-								button(type="submit" name="deleteButton").btn.btn-danger#deletePost Delete
-				-})
-	include form
+	.jumbotron
+		h1.text-center mySQL Database 101
+		blockquote.blockquote.text-center
+			footer.blockquote-footer Jason Li

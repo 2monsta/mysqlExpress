@@ -24,18 +24,22 @@ connection.connect((error)=>{
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+
+router.get("/", (req, res, next)=>{
+	res.render("index");
+})
+// PRODUCTLINE GET
+router.get('/productline', function(req, res, next) {
 	var selectQuery = "SELECT * FROM productLines;";
 	// call query agasint our connection, takes 2 args, query to run, and call back function
 	// the callback with error , results, fields
 	connection.query(selectQuery,(error, results, fields)=>{
 		// res.json(results);
-		res.render("index", {results});
+		res.render("productline", {results});
 	});
   	// res.render('index', { title: 'Express' });
 });
-
-
+// PRODUCTLINE POST
 router.post("/productLine", (req, res, next)=>{
 	var productLineInfo = req.body.productLine;
 	var tDescription =  req.body.textDescription;
@@ -46,10 +50,12 @@ router.post("/productLine", (req, res, next)=>{
 	var insertQuery = `INSERT INTO productLines (productLine, textDescription, htmlDescription, image) VALUES (?,?,?,?);`;
 	
 	connection.query(insertQuery, [productLineInfo,tDescription,hDescription,productImage], function(error, results, field){
-		res.redirect("/");
+		res.redirect("/productline");
 	})
 })
 
+
+//need TO change deleteQuery
 router.get("/deletePost/:id", function(req, res, next){
 	var postToDelete = req.params.id;
 	var deleteQuery = `delete from productLines where productLine = ?;`;
@@ -58,9 +64,31 @@ router.get("/deletePost/:id", function(req, res, next){
 			console.log(error);
 		}else{
 			console.log("you have delete me succesfully");
-			res.redirect("/");
+			res.redirect("/productline");
 		}
 	});
+});
+
+
+// OFFICES GET
+router.get("/offices", (req, res, next)=>{
+	var selectQuery = "SELECT * FROM offices;";
+	connection.query(selectQuery, (error, results, field)=>{
+		res.render("offices", {results:results});	
+	})
+});
+
+// CUSTOMERS GET
+router.get("/customers", (req, res, next)=>{
+	var selectQuery = "SELECT customerName,customerNumber, city, phone, country, salesRepEmployeeNumber FROM customers;";
+	connection.query(selectQuery, (error, results, field)=>{
+		res.render("customers", {results:results});	
+	})
+});
+
+// EMPLOYEE GET
+router.get("/orders", (req, res, next)=>{
+	res.render("orders");
 });
 
 module.exports = router;
