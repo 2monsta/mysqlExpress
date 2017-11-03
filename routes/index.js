@@ -1,16 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var sql = require("mysql");
+var config = require("../config/config");
 // include mysql node module
 //create connection is a method of sql object included aboce
 // that takes 1 arg which is an object with properties
 
-var connection = sql.createConnection({
-	host: "127.0.0.1",
-	user: "x",
-	password:"x",
-	database: "classicmodels"
-})
+var connection = sql.createConnection(config.db);
 connection.connect((error)=>{
 	if(error){
 		console.log(error.stack);
